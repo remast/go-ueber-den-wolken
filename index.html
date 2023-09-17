@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Go über den Wolken | Entwickler</title>
+
+  <link rel="stylesheet" href="./assets/node_modules/reveal.js/dist/reset.css" />
+  <link rel="stylesheet" href="./assets/node_modules/reveal.js/dist/reveal.css" />
+  <link rel="stylesheet" href="./themes/corporate.css" id="theme" />
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="./themes/tomorrow-night.css" id="highlight-theme" />
+  <link href="./assets/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-background-image="./themes/Pattern-11-outline.svg" data-background-size="400px"
+        data-background-repeat="repeat" data-background-opacity=".15">
+        <h1>Go über den Wolken</h1>
+        <aside class="notes">
+          Wie man spielend leicht ein Go Projekt startet.
+        </aside>
+      </section>
+      <section>
+        <section data-background-image="./themes/go-launchpad/cncf_go_initial.png" data-background-size="contain">
+          <aside class="notes">
+            <p>
+              Die Cloud Native Computing Foundation (CNCF) ist ein Projekt der
+              Linux Foundation um Cloud Computing, Microservices und
+              Containervirtualisierung zu fördern. Stand 2021 sind in der CNCF
+              über 500 Hersteller und Betreiber zusammengeschlossen, u. a.
+              Amazon Web Services, Alibaba Cloud, Apple, Google, Twitter,
+              Microsoft, RedHat, OVH und VMware.
+            </p>
+            <p>
+              Die Cloud Native Computing Foundation betreut und bewertet
+              Open-Source-Projekte hinsichtlich ihres Beitrags zum
+              Cloud-native Computing in Reifegraden. Die bekanntesten Projekte
+              im Reifegrad „graduated“ sind Kubernetes, eine Plattform zur
+              Container-Orchestrierung, das Monitoringtool Prometheus und
+              Envoy.
+            </p>
+          </aside>
+        </section>
+        <section data-background-image="./themes/go-cloud-native/cncf_go_ergebnis.png" data-background-size="contain">
+        </section>
+      </section>
+      <section>
+        <h2>Go App Engine Cold Start</h2>
+        <img class="fragment" src="themes/go-cloud-native/baralga-startup.png" />
+        <div class="fragment box-content rounded p-6 border-4 transform -rotate-12 text-black"
+          style="position: relative; top: -180px; background-color: #dbd4d4;">
+          Up and running in 500ms! 🚀
+        </div>
+      </section>
+      <section>
+        <div class="grid grid-cols-3 gap-1 items-center">
+          <div></div>
+          <div class="">
+            <img src="./themes/go-cloud-native/gopher.svg" class="align-middle" />
+          </div>
+          <div></div>
+        </div>
+      </section>
+      <!--
+      <section>
+        <blockquote>
+          Go has steadily grown in popularity as top language among developers
+          of projects like Docker and Kubernetes.
+          <br />
+          <br />
+          This past year, it saw a sharp increase in use due to its ease of
+          use and powerful functionalities in cloud development.
+        </blockquote>
+        https://octoverse.github.com/2022/top-programming-languages
+      </section>
+    -->
+
+      <section data-run-in-terminal="01_hellogopher\hellogopher.go" data-run-in-terminal-bin="go">
+        <h2>Hello Gopher</h2>
+        <pre><code data-trim data-noescape class="go">
+      package main
+      
+      import "fmt"
+      
+      func main() {
+        fmt.Println("Hello Gopher!")
+      }
+    </code></pre>
+        <div>
+          <span class="fragment">
+            Ausführen
+            <pre><code data-trim data-noescape>
+          go build hellogopher.go // 1. Code kompilieren
+          ./hellogopher           // 2. Binary ausführen
+        </code></pre>
+          </span>
+          <pre class="fragment"><code data-trim data-noescape>
+        go run hellogopher.go   // Code kompilieren und ausführen
+      </code></pre>
+        </div>
+        <aside class="notes">
+          - Every Go program is made up of packages. - Programs start running
+          in package main. This program is using the packages with import
+          paths "fmt" and "math/rand".
+        </aside>
+      </section>
+      <section>
+        <h2>Entwicklung</h2>
+        <div class="grid grid-cols-3 gap-32 items-center">
+          <div class="col-span-1 fragment">
+            <img src="./themes/go-cloud-native/goland_logo_300x300.png" />
+            JetBrains GoLand
+          </div>
+          <div class="col-span-1 fragment">
+            <img src="./themes/go-cloud-native/Visual_Studio_Code_1.35_icon.svg" />
+            Visual Studio Code
+          </div>
+          <div class="col-span-1 fragment">
+            <img src="./themes/go-cloud-native/Vimlogo.svg" />
+            Vim Go
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>5 Fakten zu Go</h2>
+        <div class="grid grid-cols-12 gap-1 items-center">
+          <div class="col-span-9">
+            <ol>
+              <li class="fragment">statisches Typsystem</li>
+              <li class="fragment">Garbage Collection</li>
+              <li class="fragment">keine Vererbung</li>
+              <li class="fragment">Concurrency eingebaut</li>
+              <li class="fragment">native Ausführung
+                <br />
+                <span style="
+            position: relative;
+            top: -1.1em;
+            font-size: 60%;
+            font-size: 60%;
+            ">Linux, Win, z/OS, 386, amd64, ARM, wasm, ...</span>
+              </li>
+            </ol>
+          </div>
+          <div class="col-span-3">
+            <img src="./themes/go-cloud-native/gopher.svg" />
+          </div>
+        </div>
+      </section>
+      <section>
+        <section data-background-image="./themes/Pattern-7-outline.svg" data-background-size="300px"
+          data-background-repeat="repeat" data-background-opacity=".15">
+          <h1 class="cross-blue">
+            Was ist <span style="white-space: nowrap">cloud-native</span>?
+          </h1>
+        </section>
+        <section>
+          <p>
+            Cloud Native Technologien befähigen <br />
+            <b>skalierbare Anwendungen</b> <br />
+            zu entwickeln und betreiben, <br />
+            <b>in modernen, dynamischen Umgebungen</b>.
+          </p>
+          <div class="mt-12 text-right">
+            <p style="font-size: 40%">Cloud Native Computing Foundation</p>
+          </div>
+        </section>
+        <section>
+          <h2 class="cross-blue">Skalierbar heisst ...</h2>
+          <ul>
+            <li>Last wird auf 2, 3, ... Instanzen verteilt</li>
+            <li>eine Instanz kann mehr CPU und Speicher bekommen</li>
+            <li>ist nichts los, läuft auch nichts</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="cross-blue">Moderne, dynamische Umgebung heißt ...</h2>
+          <ul>
+            <li>
+              Instanzen sind flüchtig
+              <!--
+            <ul>
+              <li>jederzeit kann eine neue Instanz gestartet werden</li>
+              <li>
+                eine laufende Instanz kann immer abgeschossen werden IP
+              </li>
+            </ul>
+          -->
+            </li>
+            <li>Adressen sind flüchtig</li>
+            <li>Hostnamen sind flüchtig</li>
+            <li>kein Dateisystem</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="cross-blue">12 Factor App</h2>
+          <div class="grid grid-cols-12 gap-1 items-center" style="font-size: 75%;">
+            <div class="col-span-6">
+              <ol>
+                <li>Codebasis</li>
+                <li>Abhängigkeiten <span class="fragment">✅</span></li>
+                <li>Konfiguration</li>
+                <li>Unterstützende Dienste</li>
+                <li>Build, Release, Run</li>
+                <li>Prozesse <span class="fragment">✅</span></li>
+              </ol>
+            </div>
+            <div class="col-span-6">
+              <ol start="7">
+                <li>Bindung an Ports</li>
+                <li>Nebenläufigkeit und Skalierung</li>
+                <li>Einweggebrauch <span class="fragment">✅</span></li>
+                <li>Dev-Prod-Vergleichbarkeit</li>
+                <li>Logs</li>
+                <li>Admin-Prozesse</li>
+              </ol>
+            </div>
+          </div>
+          <aside class="notes">
+            1. Codebasis
+            Eine Codebasis im Versionsmanagementsystem, aus der viele Deployments erfolgen.
+
+            2. Abhängigkeiten
+            Abhängigkeiten werden explizit deklariert und isoliert.
+
+            3. Konfiguration
+            Die Konfiguration erfolgt über Umgebungsvariablen.
+
+            4. Unterstützende Dienste
+            Unterstützende Dienste wie eine Datenbank werden behandelt wie Dienste von Dritten (z.B. externer Service).
+
+            5. Build, Release, Run
+            Die Phasen Build-, Release und Run werden strikt getrennt. Code Änderungen zur Laufzeit sind nicht zulässig.
+
+            6. Prozesse
+            Die Anwendung wird als ein oder mehrere Prozesse ausgeführt.
+
+            7. Bindung an Ports
+            Dienste durch das Binden von Ports exportieren, wie den HTTP Port.
+
+            8. Nebenläufigkeit und Skalierung
+            Skaliert wird über das Prozess-Modell, d.h. indem weitere Prozesse gestartet werden.
+
+            9. Einweggebrauch
+            Die Prozesse können weggeworfen werden, sie können also schnell gestartet und gestoppt werden.
+
+            10. Dev-Prod-Vergleichbarkeit
+            Entwicklung, Staging und Produktion werden so ähnlich wie möglich gehalten.
+
+            11. Logs
+            Logs werden als Stream von Ereignissen behandeln. Jeder Prozess schreibt seine Logs ungepuffert in die
+            Standardausgabe.
+
+            12. Admin-Prozesse
+            Administrations- und Management-Aufgaben als einmalige Vorgänge behandelt. Sie werden als einmalige,
+            kurzlebige Prozesse ausgeführt.
+          </aside>
+        </section>
+      </section>
+      <section>
+        <section data-background-image="./themes/Pattern-13-outline.svg" data-background-size="400px"
+          data-background-repeat="repeat" data-background-opacity=".15">
+          <h1>Tarifrechner DogOP</h1>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Tarifrechner DogOp v0.1</h2>
+          <ul>
+            <li class="fragment">Tarifrechner für Hunde OP Versicherung</li>
+            <li class="fragment">REST API die einen Tarif berechnet</li>
+            <li class="fragment">Bereitstellung als Container</li>
+            <li class="fragment">Konfiguration über Umgebungsvariablen</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Tarifrechner DogOp v0.2</h2>
+          <ul>
+            <li class="fragment">Angebote in PostgreSQL DB speichern</li>
+            <li class="fragment">Migration Datenbank Schema</li>
+            <li class="fragment">Bereitstellung als Container</li>
+            <li class="fragment">CRUD Operationen in REST API</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="cross-red">Fallschirm und Rettungsgurt</h2>
+          <ul>
+            <li class="fragment">Problem Details</li>
+            <li class="fragment">Health Check</li>
+            <li class="fragment">Logging und Tracing</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <section data-background-image="./themes/Pattern-13-outline.svg" data-background-size="400px"
+          data-background-repeat="repeat" data-background-opacity=".15">
+          <h1 class="cross-yellow">Tarifrechner <br /> DogOp v0.1</h1>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Projekt DogOP aufsetzen</h2>
+          <pre class="fragment"><code data-trim data-noescape class="java">
+          go mod init crossnative/dogop   // Go Modul initialisieren
+        </code></pre>
+          <pre class="fragment"><code data-trim data-noescape class="java">
+          go get github.com/go-chi/chi/v5 // Chi Dependency einbinden
+        </code></pre>
+          <span class="fragment">Projektstruktur
+            <pre><code data-trim data-noescape class="java">
+            go.mod // Modul Deskriptor mit Dependencies
+            go.sum // Checksummen der Dependencies
+          </code></pre>
+          </span>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Projekt DogOP aufsetzen</h2>
+          <pre><code data-trim data-noescape class="go" data-line-numbers="1-8,14|9|10-12|13|">
+          package main
+          
+          import (
+          "net/http"
+          "github.com/go-chi/chi/v5"
+          )
+          
+          func main() {
+            r := chi.NewRouter()
+            r.Get("/", func(w http.ResponseWriter, req *http.Request) {
+              w.Write([]byte("Hello DogOp!"))
+            })
+            http.ListenAndServe(":8080", r)
+          }
+        </code></pre>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Bauen und Ausführen</h2>
+          <pre class="fragment"><code data-trim data-noescape class="java">
+          // 1. Compilieren in Binary
+          go build -o build/dogop .
+        </code></pre>
+
+          <pre class="fragment"><code data-trim data-noescape class="java">
+          // 2. Binary ausführen
+          ./build/dogop
+        </code></pre>
+          <aside class="notes">
+            1. Dieses Binary ist für meine spezifische Plattform kompiliert, bei mir ein Mac.
+            2. Go Build lädt auch
+            automatisch alle Abhängigkeiten herunter wie unseren HTTP Router chi. Ein separater Package Manager wie
+            Maven oder NPM
+            ist in Go nicht erforderlich, das bringt Go Build bereits alles mit.
+          </aside>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Bauen und Ausführen</h2>
+          <img src="themes/go-cloud-native/vscode_run.png" />
+        </section>
+        <section>
+          <h2 class="cross-yellow">REST API für Rechner</h2>
+          <div class="grid grid-cols-12 gap-1 content-start" style="font-size: 75%;">
+            <div class="col-span-6">
+              <span class="fragment">
+                Request
+                <pre><code data-trim data-noescape class="bash">
+                POST /api/quote
+                content-type: application/json
+                
+                {
+                  "age": 8,
+                  "breed": "chow"
+                }
+              </code></pre>
+              </span>
+            </div>
+            <div class="col-span-6">
+              <span class="fragment">
+                Response
+                <pre><code data-trim data-noescape class="bash">
+                HTTP/1.1 200 OK
+                Content-Type: application/json
+                
+                {
+                  "age": 8,
+                  "breed": "chow",
+                  "tariffs": [
+                  {
+                    "name": "Dog OP _ Basic",
+                    "rate": 12.4
+                  }
+                  ]
+                }
+              </code></pre>
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2 class="cross-yellow">REST API für Rechner</h2>
+          <pre style="font-size: 0.44em;"><code data-trim data-noescape class="go" data-line-numbers="14,17,24|1,12|2-4|6-8|10-11|">
+          func HandleQuote(w http.ResponseWriter, r *http.Request) {
+            // 1. JSON Request lesen
+            var q Quote
+            json.NewDecoder(r.Body).Decode(&q)
+            
+            // 2. Tarif berechnen
+            tariff := Tariff{Name: "Dog OP _ Basic", Rate: 12.4}
+            quote.Tariffs = []Tariff{tariff}
+            
+            // 3. JSON Response schreiben
+            json.NewEncoder(w).Encode(quote)
+          }
+          
+          func main() {
+            r := chi.NewRouter()
+            
+            r.Post("/api/quote", HandleQuote)
+            
+            r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+              w.Write([]byte("Hello DogOp!"))
+            })
+            
+            http.ListenAndServe(":8080", r)
+          }
+        </code></pre>
+          <div class="fragment box-content rounded p-6 border-4 transform -rotate-12 text-black"
+            style="position: relative; top: -380px; background-color: rgba(255, 200, 0);">
+            Achtung, noch ohne Fehlerhandling! 💣
+          </div>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Struct <span style="font-size: 50%;">statt Klasse</span></h2>
+          <pre><code data-trim data-noescape data-line-numbers="1-6|8-12|" class="go">
+          // Structs definieren
+          
+          type Tariff struct {
+            Name string `json:"name"`
+            Rate float64 `json:"rate"`
+          }
+          
+          type Quote struct {
+            Age     int      `json:"age"`
+            Breed   string   `json:"breed"`
+            Tariffs []Tariff `json:"tariffs"`
+          }          
+        </code></pre>
+          <pre class="fragment"><code data-trim data-noescape class="go">
+          // Struct erzeugen
+          tariff := Tariff{Name: "Dog OP _ Basic", Rate: 12.4}
+        </code></pre>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Fehler 💣</h2>
+          <pre style="font-size: 0.44em;"><code data-trim data-noescape class="go" data-line-numbers="1,12|4,11">
+          func HandleQuote(w http.ResponseWriter, r *http.Request) {
+            // 1. JSON Request lesen
+            var q Quote
+            json.NewDecoder(r.Body).Decode(&q) // 💣 Fehler möglich!
+            
+            // 2. Tarif berechnen
+            tariff := Tariff{Name: "Dog OP _ Basic", Rate: 12.4}
+            quote.Tariffs = []Tariff{tariff}
+            
+            // 3. JSON Response schreiben
+            json.NewEncoder(w).Encode(quote) // 💣 Fehler möglich!
+          }
+        </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Go kennt kein spezielles Konstrukt zur Fehlerbehandlung</li>
+              <li>Fehler sind normale Rückgabewerte</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <img src="themes/go-cloud-native/godoc-decode.png" />
+        </section>
+        <section>
+          <h2 class="cross-yellow">Fehler 💣</h2>
+          <ul>
+            <li class="fragment">Go kennt kein spezielles Konstrukt zur Fehlerbehandlung</li>
+            <li class="fragment">Fehler sind normale Rückgabewerte</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Fehler 💣</h2>
+          <pre style="font-size: 0.44em;"><code data-trim data-noescape class="go" data-line-numbers="1,16|5,6|8,9,13|10-12{5-13}">
+          func HandleQuote(w http.ResponseWriter, r *http.Request) {
+            // 1. JSON Request lesen
+            var q Quote
+            
+            // Potentieller Fehler
+            err := json.NewDecoder(r.Body).Decode(&q)
+            
+            // Auf Fehler prüfen
+            if err != nil {
+              // Fehler behandeln
+              http.Error(w, "Could not decode quote.😔", http.StatusBadRequest)
+              return
+            }
+            
+            // ...
+          }
+        </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Go kennt kein spezielles Konstrukt zur Fehlerbehandlung</li>
+              <li>Fehler sind normale Rückgabewerte</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2 class="cross-yellow">HTTP Handler testen</h2>
+          <ul>
+            <li class="fragment">Unit Tests in Standardlib enthalten</li>
+            <li class="fragment">Tests in Datei <code>main_test.go</code></li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="cross-yellow">HTTP Handler testen</h2>
+          <pre style="font-size: 0.39em; overflow: hidden;"><code data-trim data-noescape data-line-numbers="1,21|2-3|5-12|14-15|17-20|" class="go">
+          func TestHandleQuote(t *testing.T) {
+            // 1. HTTP Recorder erstellen
+            recorder := httptest.NewRecorder()
+            
+            // 2. Request erstellen (mit Body)
+            body := `
+            {
+              "age": 8,
+              "breed": "chow"
+            }
+            `
+            req, _ := http.NewRequest("GET", "/api/quote", strings.NewReader(body))
+            
+            // 3. Handler Funktion aufrufen
+            HandleQuote(recorder, req)
+            
+            // 4. Return Code prüfen
+            if recorder.Code != http.StatusOK {
+              t.Errorf("Wrong status: got %v expected %v", recorder.Code, http.StatusOK)
+            }
+          }
+        </code></pre>
+        </section>
+        <section>
+          <h2 class="cross-yellow">HTTP Handler testen</h2>
+          <pre class="fragment"><code data-trim data-noescape class="bash">
+          go test -v ./...
+        </code></pre>
+
+          <pre class="fragment"><code data-trim data-noescape class="bash">
+          === RUN TestHandleQuote
+          --- PASS: TestHandleQuote (0.00s)
+          PASS
+          ok crossnative/dogop 0.228s
+        </code></pre>
+        </section>
+        <section>
+          <h2 class="cross-yellow">HTTP Handler testen</h2>
+          <img src="themes/go-cloud-native/vscode_handler_test.png" width="80%" />
+        </section>
+        <section>
+          <h2 class="cross-yellow">Port per Umgebungsvariable konfigurieren</h2>
+          <pre class="fragment"><code data-trim data-noescape class="go">
+          // Einfach per Standardlib
+          
+          function main() {
+            port := os.Getenv("DOGOP_PORT")
+            http.ListenAndServe(fmt.Sprintf(":%v", config.Port), r)
+          }
+        </code></pre>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Port per Umgebungsvariable konfigurieren</h2>
+          <pre class="fragment"><code data-trim data-noescape class="go">
+          // Oder mit envconfig von Kelsey Hightower
+          
+          type Config struct {
+            Port string `default:"8080"`
+          }
+          
+          function main() {
+            var config Config
+            err := envconfig.Process("dogop", &config)
+            if err != nil {
+              log.Fatal(err.Error())
+            }
+            
+            http.ListenAndServe(fmt.Sprintf(":%v", config.Port), r)
+          }
+        </code></pre>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Dockerfile für DogOP</h2>
+          <pre class="fragment" style="font-size: .51em;"><code data-trim data-noescape class="bash" data-trim data-noescape data-line-numbers="1-5|7-11|">
+          # 1. DogOp Builder
+          FROM golang as builder
+          WORKDIR /app
+          ADD . /app
+          RUN CGO_ENABLED=0 go build -ldflags="-w -s" -o build/dogop .
+          
+          # 2. DogOp Container
+          FROM alpine
+          COPY --from=builder /app/build/dogop /usr/bin/
+          EXPOSE 8080
+          ENTRYPOINT ["/usr/bin/dogop"]
+        </code></pre>
+        </section>
+        <section>
+          <h3 class="cross-yellow">>_ Demo</h3>
+        </section>
+        <section>
+          <h2 class="cross-yellow">Zusammenfassung DogOP v0.1</h2>
+          <ol>
+            <li class="fragment">Go Projekt aufsetzen</li>
+            <li class="fragment">einfache Rest API Handler</li>
+            <li class="fragment">Konfiguration per Umgebungsvariable</li>
+            <li class="fragment">Structs</li>
+            <li class="fragment">Fehler behandeln</li>
+            <li class="fragment">Unit Tests</li>
+            <li class="fragment">Docker Container bauen</li>
+          </ol>
+        </section>
+        <section>
+          <h2 class="cross-blue">12 Factor App DogOP v0.1</h2>
+          <div class="grid grid-cols-12 gap-1 items-center" style="font-size: 75%;">
+            <div class="col-span-6">
+              <ol>
+                <li>Codebasis</li>
+                <li>Abhängigkeiten <span style="opacity: .6;">✅</span></li>
+                <li>Konfiguration <span class="fragment">✅</span></li>
+                <li>Unterstützende Dienste</li>
+                <li>Build, Release, Run</li>
+                <li>Prozesse <span style="opacity: .6;">✅</span></li>
+              </ol>
+            </div>
+            <div class="col-span-6">
+              <ol start="7">
+                <li>Bindung an Ports <span class="fragment">✅</span></li>
+                <li>Nebenläufigkeit und Skalierung</li>
+                <li>Einweggebrauch <span style="opacity: .6;">✅</span></li>
+                <li>Dev-Prod-Vergleichbarkeit</li>
+                <li>Logs</li>
+                <li>Admin-Prozesse</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section>
+        <section data-background-image="./themes/Pattern-17-outline.svg" data-background-size="400px"
+          data-background-repeat="repeat" data-background-opacity=".15">
+          <h1>Tarifrechner <br /> DogOp v0.2</h1>
+        </section>
+        <section>
+          <h2>CRUD API für Angebote</h2>
+          <div class="grid grid-cols-12 gap-1 content-start" style="font-size: 75%;">
+            <div class="col-span-6">
+              <span class="fragment">
+                Create Request
+                <pre><code data-trim data-noescape class="bash">
+                POST /api/offer
+                content-type: application/json
+                
+                {
+                  "name": "Rollo",
+                  "age": 8,
+                  "breed": "chow",
+                  "customer": "jan"
+                }
+              </code></pre>
+              </span>
+            </div>
+            <div class="col-span-6">
+              <span class="fragment">
+                Create Response
+                <pre><code data-trim data-noescape class="bash">
+                HTTP/1.1 200 OK
+                Content-Type: application/json
+                
+                {
+                  "id": "427ed4de",
+                  "customer": "jan",
+                  "age": 8,
+                  "breed": "chow",
+                  "name": "Rollo"
+                }
+              </code></pre>
+              </span>
+            </div>
+          </div>
+          <div class="grid grid-cols-12 gap-1 content-start" style="font-size: 75%;">
+            <div class="col-span-6">
+              <span class="fragment">
+                Read Request
+                <pre><code data-trim data-noescape class="bash">
+                GET /api/offer/427ed4de
+              </code></pre>
+              </span>
+            </div>
+            <div class="col-span-6">
+              <span class="fragment">
+                Read Response
+                <pre><code data-trim data-noescape class="bash">
+                HTTP/1.1 200 OK
+                Content-Type: application/json
+                
+                {
+                  "id": "e8b948c6-28f6-40b5-9d51-dc14a6c11a17",
+                  "customer": "jan",
+                  "age": 8,
+                  "breed": "chow",
+                  "name": "Rollo"
+                }
+              </code></pre>
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>CRUD API für Angebote</h2>
+          <pre class="fragment"><code data-trim data-noescape class="go">
+          r.Route("/api/offer", func(sr chi.Router) {
+            sr.Post("/", HandleCreateOffer(offerRepository))
+            sr.Get("/{ID}", HandleReadOffer(offerRepository))
+          })
+        </code></pre>
+        </section>
+        <section>
+          <h2>Create Request <span style="font-size: 50%;">mit Handler Function</span></h2>
+          <pre class="fragment" style="font-size: .42em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="1-2,12-13|3-11|">
+          func HandleCreateOffer(offerRepository *OfferRepository) http.HandlerFunc {
+            return func(w http.ResponseWriter, req *http.Request) {
+              // 1. JSON Request lesen
+              var offer Offer
+              json.NewDecoder(req.Body).Decode(&offer)
+              
+              // 2. Offer speichern
+              createdOffer, _ := offerRepository.Insert(req.Context(), &offer)
+              
+              // 3. JSON Response schreiben
+              json.NewEncoder(w).Encode(createdOffer)
+            }
+          }
+        </code></pre>
+        </section>
+        <section>
+          <h2>Angebote speichern <span style="font-size: 50%;">in PostgreSQL</span></h2>
+          <ul>
+            <li class="fragment"><code>pgx</code> als PostgreSQL Driver und Toolkit</li>
+            <li class="fragment">Interface <code>database/sql</code> in Go Standardlib</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Angebote speichern <span style="font-size: 50%;">in PostgreSQL</span></h2>
+          <pre class="fragment" style="font-size: .48em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="1-2,12-13|3-11|">
+          type OfferRepository struct {
+            connPool *pgxpool.Pool
+          }
+          
+          func (r *OfferRepository) Insert(ctx context.Context, offer *Offer) (*Offer, error) {
+            // ...
+          }
+        </code></pre>
+        </section>
+        <section>
+          <h2>Angebote speichern <span style="font-size: 50%;">in PostgreSQL</span></h2>
+          <pre class="fragment" style="font-size: .37em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="1,27|2-3|5-7|9-20|22-23|25-26|">
+          func (r *OfferRepository) Insert(ctx context.Context, offer *Offer) (*Offer, error) {
+            // 1. ID generieren
+            offer.ID = uuid.New().String()
+            
+            // 2. Transaktion beginnen
+            tx, _ := r.connPool.Begin(ctx)
+            defer tx.Rollback(ctx)
+            
+            // 3. Offer per Insert speichern
+            _, err := tx.Exec(
+            ctx,
+            `INSERT INTO offers 
+            (id, customer, age, breed, name) 
+            VALUES 
+            ($1, $2, $3, $4, $5)`,
+            offer.ID, offer.Customer, offer.Age, offer.Breed, offer.Name,
+            )
+            if err != nil {
+              return nil, err
+            }
+            
+            // 4. Transaktion commiten
+            tx.Commit(ctx)
+            
+            // 5. Gespeicherte Offer zurückgeben
+            return offer, nil
+          }
+        </code></pre>
+        </section>
+        <section>
+          <h2>Aus dem Context gerissen</h2>
+          <pre class="fragment" style="font-size: .35em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="5,14,15,18,19,25,29">
+          return func(w http.ResponseWriter, req *http.Request) {
+            // ...
+            
+            // 2. Offer speichern
+            createdOffer, _ := offerRepository.Insert(req.Context(), &offer)
+            
+            // ...
+          }
+          
+          func (r *OfferRepository) Insert(ctx context.Context, offer *Offer) (*Offer, error) {
+            // ..
+            
+            // 2. Transaktion beginnen
+            tx, _ := r.connPool.Begin(ctx)
+            defer tx.Rollback(ctx)
+            
+            // 3. Offer per Insert speichern
+            _, err := tx.Exec(
+            ctx,
+            `INSERT INTO offers 
+            (id, customer, age, breed, name) 
+            VALUES 
+            ($1, $2, $3, $4, $5)`,
+            offer.ID, offer.Customer, offer.Age, offer.Breed, offer.Name,
+            )
+            // ...
+            
+            // 4. Transaktion commiten
+            tx.Commit(ctx)
+            
+            // ...
+          }
+        </code></pre>
+          <aside class="notes">
+            <ul>
+              In einer Go Anwendung sind an der Abarbeitung eines Requests viele verschiedenen Go Funktionen beteiligt,
+              und dass zur
+              gleichen Zeit. Gewisse Informationen wie ein Authorization Token, sind für alle beteiligten Funktionen des
+              Requests
+              wichtig. Der Context enthält all diese Informationen, während der Request abgearbeitet wird. Auch Signale
+              wie ein
+              Abbruch des Requests werden über den Context übermittelt.
+              In unserer Web Anwendung wird der Context vom Web Server erzeugt, wenn der Request ankommt. Der Context
+              ist am Request
+              hinterlegt und kann mit r.Context() abgerufen und mit offerRepository.Insert(r.Context(), &offer) an das
+              OfferRepository
+              weitergegeben werden.
+              Wozu das gut ist? Angenommen der Aufrufer liest ein Angebot per GET Request. Da der Request länger dauert
+              bricht der
+              Aufrufer ihn ab. Kriegt das niemand mit würde die SQL Query die der Request ausgelöst hat weiter
+              abgearbeitet - obwohl
+              sich niemand mehr fürs Ergebnis interessiert. Geben wir aber den Context des HTTP Requests über das
+              OfferRepository bis
+              an den Datenbank Treiber weiter, so bekommt der Datenbank Treiber über den Context mit das die Anfrage
+              abgebrochen wurde
+              und bricht seinerseits die SQL Query ab. Auf diese Art und Weise könnten wir auch für jeden eingehenden
+              Request einen
+              Context mit einem Timeout von 2 Sekunden erzeugen. Dauert die Abarbeitung des Requests länger als 2
+              Sekunden, wird der
+              Context abgebrochen und damit auch die Abarbeitung des Requests. Mehr zum Context Pattern findet Ihr unter
+              [ctx].
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>Connection Pool nutzen</h2>
+          <pre class="fragment" style="font-size: .35em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="7,9|1-4|">
+          type Config struct {
+            Port string `default:"8080"`
+            Db string `default:"postgres://postgres:postgres@localhost:5432/dogop"`
+          }
+          
+          func main() {
+            connPool, err := pgxpool.New(context.Background(), config.Db)
+            
+            offerRepository := &OfferRepository{connPool: connPool}
+            
+            // ...
+          }
+        </code></pre>
+        </section>
+        <section>
+          <h2>Datenbank Schema migrieren</h2>
+          <ul>
+            <li class="fragment">DB Schema Update beim Start der Anwendung</li>
+            <li class="fragment">DB Schema migrieren mit <code>golang-migrate</code></li>
+            <li class="fragment">SQL Migrations Skripte Teil des Binary</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Datenbank Schema migrieren</h2>
+          <pre class="fragment" style="font-size: .43em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="1-2|5-6|8-9|11-12|14-15|">
+          //go:embed migrations
+          var migrations embed.FS
+          
+          func main() {
+            // IO Filesystem erstellen
+            source, err := iofs.New(migrations, "migrations")
+            
+            // Connection String für Migration anpassen
+            dbMigrateURL := strings.Replace(config.Db, "postgres://", "pgx://", 1)
+            
+            // Golang Migrate intialisieren
+            m, _ := migrate.NewWithSourceInstance("iofs", source, dbMigrateURL)
+            
+            // Datenbank Schema aktualisieren
+            m.Up()
+            
+            // ...
+          }
+          
+        </code></pre>
+        </section>
+        <section>
+          <h3>>_ Demo</h3>
+        </section>
+        <section>
+          <h2>Zusammenfassung DogOP v0.2</h2>
+          <ol>
+            <li class="fragment">CRUD API für Angebote</li>
+            <li class="fragment">Angebote in PostgreSQL speichern</li>
+            <li class="fragment">Context</li>
+            <li class="fragment">Connection Pool nutzen</li>
+            <li class="fragment">Datenbank Schema migrieren</li>
+          </ol>
+        </section>
+        <section>
+          <h2 class="cross-blue">12 Factor App DogOP v0.2</h2>
+          <div class="grid grid-cols-12 gap-1 items-center" style="font-size: 75%;">
+            <div class="col-span-6">
+              <ol>
+                <li>Codebasis</li>
+                <li>Abhängigkeiten <span style="opacity: .6;">✅</span></li>
+                <li>Konfiguration <span style="opacity: .6;">✅</span></li>
+                <li>Unterstützende Dienste <span class="fragment">✅</span></li>
+                <li>Build, Release, Run</li>
+                <li>Prozesse <span style="opacity: .6;">✅</span></li>
+              </ol>
+            </div>
+            <div class="col-span-6">
+              <ol start="7">
+                <li>Bindung an Ports <span style="opacity: .6;">✅</span></li>
+                <li>Nebenläufigkeit und Skalierung</li>
+                <li>Einweggebrauch <span style="opacity: .6;">✅</span></li>
+                <li>Dev-Prod-Vergleichbarkeit</li>
+                <li>Logs</li>
+                <li>Admin-Prozesse</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section>
+        <section data-background-image="./themes/Pattern-1-outline.svg" data-background-size="400px"
+          data-background-repeat="repeat" data-background-opacity=".15">
+          <h1 class="cross-red">Fallschirm und Rettungsgurt</h1>
+        </section>
+        <section>
+          <h2 class="cross-red">Fallschirm und Rettungsgurt</h2>
+          <ul>
+            <li>Problem Details</li>
+            <li>Health Check</li>
+            <li>Logging und Tracing</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="cross-red">Health Check</h2>
+          <ul>
+            <li>Nutzung von <code>health-go</code> (hellofresh)</li>
+            <li>Integration des Checks für <code>pgx</code></li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="cross-red">Health Check</h2>
+          <pre class="fragment" style="font-size: .43em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="1-11|13-14|">
+	// Register Health Check
+	h, _ := health.New(health.WithChecks(
+		health.Config{
+			Name:      "db",
+			Timeout:   time.Second * 2,
+			SkipOnErr: false,
+			Check: healthPgx.New(healthPgx.Config{
+				DSN: config.Db,
+			}),
+		},
+	))
+
+  // Register Handler Function
+	r.Get("/health", h.HandlerFunc)
+        </code></pre>
+        </section>
+        <section>
+          <h2 class="cross-red">Problem Details</h2>
+          <img class="fragment" src="themes/go-cloud-native/problem_details.png" />
+        </section>
+        <section>
+          <h2 class="cross-red">Problem Details</h2>
+          <div class="grid grid-cols-12 gap-1 content-start" style="font-size: 75%;">
+            <div class="col-span-6">
+              <span class="fragment">
+                Ungültiger Request
+                <pre><code data-trim data-noescape class="bash">
+                GET /api/offer/-invalid-
+              </code></pre>
+              </span>
+            </div>
+            <div class="col-span-6">
+              <span class="fragment">
+                Response mit Problem Details
+                <pre><code data-trim data-noescape class="bash">
+              HTTP/1.1 400 Bad Request
+              Content-Type: application/problem+json
+
+              {
+                "reason": "invalid UUID format",
+                "status": 400,
+                "title": "invalid request"
+              }
+              </code></pre>
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2 class="cross-red">Problem Details</h2>
+          <pre class="fragment" style="font-size: .43em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="3|3-10|3-10">
+	return func(w http.ResponseWriter, r *http.Request) {
+		// 1. Offer lesen
+		id, err := uuid.Parse(chi.URLParam(r, "ID"))
+		if err != nil {
+			problem.New(
+				problem.Title("invalid request"),
+				problem.Wrap(err),
+				problem.Status(http.StatusBadRequest),
+			).WriteTo(w)
+			return
+	  }
+  }
+          </code></pre>
+        </section>
+        <section>
+          <h2 class="cross-red">Middleware</h2>
+          <ul style="font-size: 80%;">
+            <li class="fragment">cross-cutting Features für alle Requests <br /> (z.B. Logging, Authentifizierung)</li>
+            <li class="fragment">erzeugen eine Kette von Handlern <br /> router => middleware handler => application
+              handler</li>
+            <li class="fragment">implementieren das Interface <code>http.Handler</code></li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="cross-red">Middleware <span style="font-size: 50%;">loggt Requests</span></h2>
+          <pre style="font-size: 0.44em;" class="fragment"><code data-trim data-noescape data-line-numbers="1-6|11-12|" class="go">  
+          func loggingMiddleware(next http.Handler) http.Handler {
+            return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              log.Printf("%v requested URL %v", r.Host, r.URL)
+              next.ServeHTTP(w, r)
+            })
+          }
+          
+          func main() {
+            r := chi.NewRouter()
+            
+            // Nutze Logging Middleware
+            r.Use(loggingMiddleware)
+            
+            http.ListenAndServe(":8080", r)
+          }
+        </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>https://golang.org/pkg/net/http/#HandlerFunc</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2 class="cross-red">Middlewares nutzen</h2>
+          <pre class="fragment"><code data-trim data-noescape data-line-numbers="4-8|10-11|4-11" class="go">  
+          func main() {
+            r := chi.NewRouter()
+            
+            // Basis Middlewares
+            r.Use(middleware.RequestID)
+            r.Use(middleware.RealIP)
+            r.Use(middleware.Logger)
+            r.Use(middleware.Recoverer)
+            
+            // Timeout über Request Context setzen
+            r.Use(middleware.Timeout(60 * time.Second))
+            
+            http.ListenAndServe(":8080", r)
+          }
+        </code></pre>
+        </section>
+      </section>
+      <section>
+        <h2 class="cross-white">Zusammenfassung DogOP</h2>
+        <div class="grid grid-cols-12 gap-1 content-start" style="font-size: 75%;">
+          <div class="col-span-6 fragment">
+            <h4 class="cross-yellow">v0.1</h4>
+            <ol>
+              <li>Go Projekt aufsetzen</li>
+              <li>einfache Rest API Handler</li>
+              <li>Konfiguration per Umgebungsvariable</li>
+              <li>Structs</li>
+              <li>Fehler behandeln</li>
+              <li>Unit Tests</li>
+              <li>Docker Container bauen</li>
+            </ol>
+          </div>
+          <div class="col-span-6 fragment">
+            <h4>v0.2</h4>
+            <ol>
+              <li>CRUD API für Angebote</li>
+              <li>Angebote in PostgreSQL speichern</li>
+              <li>Context</li>
+              <li>Connection Pool nutzen</li>
+              <li>Datenbank Schema migrieren</li>
+            </ol>
+          </div>
+        </div>
+
+      </section>
+      <section>
+        <h2 style="font-size: 170%">3 Gründe für Go</h2>
+        <ol style="font-size: 130%">
+          <li class="fragment">Einfach</li>
+          <li class="fragment">Mächtig</li>
+          <li class="fragment">Langweilig</li>
+        </ol>
+      </section>
+      <section>
+        <div class="grid grid-cols-2 gap-1 text-left">
+          <div>
+            <img src="./themes/JanStamer_profil_schmal.png" class="object-scale-down h-80" style="margin-top: 0" />
+          </div>
+          <div>
+            <h2 style="margin-bottom: 0">Jan Stamer</h2>
+            <div class="mb-10">
+              <a href="mailto:jan.stamer@crossnative.com" style="font-size: 85%">jan.stamer@crossnative.com</a>
+            </div>
+
+            <div class="grid grid-cols-4 gap-1 text-left">
+              <div>
+                <a href="https://www.linkedin.com/in/jan-stamer">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="72" height="72">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                      d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"
+                      fill="rgba(255,255,255,1)" />
+                  </svg>
+                </a>
+              </div>
+              <div>
+                <a href="https://github.com/remast/">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="72" height="72">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                      d="M12 2C6.475 2 2 6.475 2 12a9.994 9.994 0 0 0 6.838 9.488c.5.087.687-.213.687-.476 0-.237-.013-1.024-.013-1.862-2.512.463-3.162-.612-3.362-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.087.638-1.337-2.225-.25-4.55-1.113-4.55-4.938 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.262 2.75 1.026a9.28 9.28 0 0 1 2.5-.338c.85 0 1.7.112 2.5.337 1.912-1.3 2.75-1.024 2.75-1.024.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.687 0 3.838-2.337 4.688-4.562 4.938.362.312.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .262.188.574.688.474A10.016 10.016 0 0 0 22 12c0-5.525-4.475-10-10-10z"
+                      fill="rgba(255,255,255,1)" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--
+  <section>
+    <h2>Links</h2>
+    <ul>
+      <li>
+        <a href="https://gitlab.ppi.int/jsta/launchctl/-/releases"
+        ><code>launchctl</code> CLI Tool</a
+        >
+      </li>
+      <li>
+        <a href="https://gitlab.ppi.int/x-launchpad/backend/core-go"
+        >Go Launchpad</a
+        >
+      </li>
+      <li>
+        <a
+        href="https://sonarqube2-ppi-x.kube.ppidev.net/code?id=core-go&branch=main"
+        >
+        SonarQube Go Launchpad
+      </a>
+    </li>
+  </ul>
+</section>
+-->
+      <section>
+        <h2>Backup</h2>
+      </section>
+    </div>
+  </div>
+
+  <script src="./assets/node_modules/reveal.js/dist/reveal.js"></script>
+  <script src="./assets/node_modules/reveal.js/plugin/notes/notes.js"></script>
+  <script src="./assets/node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="./assets/node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+  <script src="./assets/node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+  <script>
+    Reveal.initialize({
+      transition: "slide",
+      pdfSeparateFragments: false,
+      navigationMode: "linear",
+      dependencies: [
+        { src: "./node_modules/reveal-plantuml/dist/reveal-plantuml.min.js" },
+      ],
+      hash: true,
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom],
+    });
+  </script>
+</body>
+</html>
