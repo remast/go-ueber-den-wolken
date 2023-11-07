@@ -109,6 +109,7 @@
           paths "fmt" and "math/rand".
         </aside>
       </section>
+      <!--
       <section>
         <h2>Entwicklung</h2>
         <div class="grid grid-cols-3 gap-32 items-center fragment">
@@ -126,6 +127,7 @@
           </div>
         </div>
       </section>
+      -->
       <section>
         <h2>5 Fakten zu Go</h2>
         <div class="grid grid-cols-12 gap-1 items-center">
@@ -142,7 +144,7 @@
             top: -1.1em;
             font-size: 60%;
             font-size: 60%;
-            ">Linux, Win, z/OS, 386, amd64, ARM, wasm, ...</span>
+            ">Linux, Win, z/OS, 386, amd64, ARM, WebAssembly, ...</span>
               </li>
             </ol>
           </div>
@@ -169,6 +171,7 @@
             <p style="font-size: 40%">Cloud Native Computing Foundation</p>
           </div>
         </section>
+        <!--
         <section>
           <h2 class="cross-blue">Skalierbar heisst ...</h2>
           <ul>
@@ -177,19 +180,21 @@
             <li>ist nichts los, läuft auch nichts</li>
           </ul>
         </section>
+        -->
+        <!--
         <section>
           <h2 class="cross-blue">Moderne, dynamische Umgebung heißt ...</h2>
           <ul>
             <li>
               Instanzen sind flüchtig
-              <!--
+              !--
             <ul>
               <li>jederzeit kann eine neue Instanz gestartet werden</li>
               <li>
                 eine laufende Instanz kann immer abgeschossen werden IP
               </li>
             </ul>
-          -->
+          --
             </li>
             <li>Adressen sind flüchtig</li>
             <li>Hostnamen sind flüchtig</li>
@@ -260,6 +265,7 @@
             kurzlebige Prozesse ausgeführt.
           </aside>
         </section>
+        -->
       </section>
       <section>
         <section data-background-image="./themes/Pattern-13-outline.svg" data-background-size="400px"
@@ -269,10 +275,9 @@
         <section>
           <h2 class="cross-yellow">Tarifrechner DogOp v0.1</h2>
           <ul>
-            <li class="fragment">Tarifrechner für Hunde OP Versicherung</li>
-            <li class="fragment">REST API die einen Tarif berechnet</li>
-            <li class="fragment">Bereitstellung als Container</li>
-            <li class="fragment">Konfiguration über Umgebungsvariablen</li>
+            <li>API die Hunde OP Versicherung berechnet</li>
+            <li>Bereitstellung als Container</li>
+            <li>Konfiguration über Umgebungsvariablen</li>
           </ul>
         </section>
         <section>
@@ -280,7 +285,6 @@
           <ul>
             <li class="fragment">Angebote in PostgreSQL DB speichern</li>
             <li class="fragment">Migration Datenbank Schema</li>
-            <li class="fragment">Bereitstellung als Container</li>
             <li class="fragment">CRUD Operationen in REST API</li>
           </ul>
         </section>
@@ -319,8 +323,8 @@
           package main
           
           import (
-          "net/http"
-          "github.com/go-chi/chi/v5"
+            "net/http"
+            "github.com/go-chi/chi/v5"
           )
           
           func main() {
@@ -335,7 +339,7 @@
         <section>
           <h2 class="cross-yellow">Bauen und Ausführen</h2>
           <pre class="fragment"><code data-trim data-noescape class="java">
-          // 1. Compilieren in Binary
+          // 1. Kompilieren in Binary
           go build -o build/dogop .
         </code></pre>
 
@@ -383,10 +387,10 @@
                   "age": 8,
                   "breed": "chow",
                   "tariffs": [
-                  {
-                    "name": "Dog OP _ Basic",
-                    "rate": 12.4
-                  }
+                    {
+                      "name": "Dog OP _ Basic",
+                      "rate": 12.4
+                    }
                   ]
                 }
               </code></pre>
@@ -705,7 +709,7 @@
                 Content-Type: application/json
                 
                 {
-                  "id": "e8b948c6-28f6-40b5-9d51-dc14a6c11a17",
+                  "id": "427ed4de",
                   "customer": "jan",
                   "age": 8,
                   "breed": "chow",
@@ -1022,17 +1026,16 @@
         </section>
         <section>
           <h2 class="cross-red">Problem Details</h2>
-          <pre class="fragment" style="font-size: .43em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="3|3-10|3-10">
+          <pre class="fragment" style="font-size: .43em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="2|2-10|2-10">
 	return func(w http.ResponseWriter, r *http.Request) {
-		// 1. Offer lesen
-		id, err := uuid.Parse(chi.URLParam(r, "ID"))
-		if err != nil {
-			problem.New(
-				problem.Title("invalid request"),
-				problem.Wrap(err),
-				problem.Status(http.StatusBadRequest),
-			).WriteTo(w)
-			return
+	  id, err := uuid.Parse(chi.URLParam(r, "ID"))
+	  if err != nil {
+      problem.New(
+        problem.Title("invalid request"),
+        problem.Wrap(err),
+        problem.Status(http.StatusBadRequest),
+      ).WriteTo(w)
+      return
 	  }
   }
           </code></pre>
