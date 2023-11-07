@@ -169,11 +169,11 @@
           </div>
         </section>
         <section>
-          <h2 style="font-size: 170%" class="cross-blue">3 Cloud Native Booster</h2>
+          <h2 style="font-size: 170%" class="cross-blue">Cloud Native Booster</h2>
           <ol style="font-size: 130%; list-style-type:none;">
-            <li class="fragment">🗑️ Disposability </li>
-            <li class="fragment">⏰ Telemetry</li>
-            <li class="fragment">☯️ Simplicity</li>
+            <li class="fragment">💪 Skalierbar</li>
+            <li class="fragment">🚂 Zuverlässig</li>
+            <li class="fragment">☯️ Einfach</li>
           </ol>
         </section>
         <!--
@@ -288,9 +288,11 @@
         <section>
           <h2>Tarifrechner DogOp v0.2</h2>
           <ul>
-            <li class="fragment">Angebote in Postgres DB speichern</li>
-            <li class="fragment">Migration Datenbank Schema</li>
+            <li class="fragment">Angebote in Postgres speichern</li>
             <li class="fragment">CRUD Operationen in REST API</li>
+            <!--
+            <li class="fragment">Migration Datenbank Schema</li>
+            -->
           </ul>
         </section>
         <section>
@@ -438,11 +440,9 @@
         </section>
         <section>
           <h2 class="cross-yellow">Struct <span style="font-size: 50%;">statt Klasse</span></h2>
-          <pre><code data-trim data-noescape data-line-numbers="1-6|8-12|" class="go">
-          // Structs definieren
-          
+          <pre><code data-trim data-noescape data-line-numbers="1-4|6-10|" class="go">
           type Tariff struct {
-            Name string `json:"name"`
+            Name string  `json:"name"`
             Rate float64 `json:"rate"`
           }
           
@@ -459,7 +459,7 @@
         </section>
         <section>
           <h2 class="cross-yellow">Fehler 💣</h2>
-          <pre style="font-size: 0.44em;"><code data-trim data-noescape class="go" data-line-numbers="1,12|4,11">
+          <pre style="font-size: 0.53em;"><code data-trim data-noescape class="go" data-line-numbers="1,12|4,11">
           func HandleQuote(w http.ResponseWriter, r *http.Request) {
             // 1. JSON Request lesen
             var q Quote
@@ -526,7 +526,7 @@
         </section>
         <section>
           <h2 class="cross-yellow">HTTP Handler testen</h2>
-          <pre style="font-size: 0.39em; overflow: hidden;"><code data-trim data-noescape data-line-numbers="1,21|2-3|5-12|14-15|17-20|" class="go">
+          <pre style="font-size: 0.4em; overflow: hidden;"><code data-trim data-noescape data-line-numbers="1,21|2-3|5-12|14-15|17-20|" class="go">
           func TestHandleQuote(t *testing.T) {
             // 1. HTTP Recorder erstellen
             recorder := httptest.NewRecorder()
@@ -569,7 +569,7 @@
         </section>
         <section>
           <h2 class="cross-yellow">Port per Umgebungsvariable konfigurieren</h2>
-          <pre class="fragment"><code data-trim data-noescape class="go">
+          <pre class="fragment"><code data-trim data-noescape class="go" data-line-numbers="1,4|1,4,5">
           // Einfach per Standardlib
           
           function main() {
@@ -580,7 +580,7 @@
         </section>
         <section>
           <h2 class="cross-yellow">Port per Umgebungsvariable konfigurieren</h2>
-          <pre class="fragment"><code data-trim data-noescape class="go">
+          <pre class="fragment"><code data-trim data-noescape class="go" data-line-numbers="1,3-5|1,3-5|1,3-5,8,9|1,3-5,8,9,14">
           // Oder mit envconfig von Kelsey Hightower
           
           type Config struct {
@@ -614,6 +614,7 @@
           ENTRYPOINT ["/usr/bin/dogop"]
         </code></pre>
         </section>
+        <!--
         <section>
           <h3 class="cross-yellow">>_ Demo</h3>
         </section>
@@ -654,6 +655,7 @@
             </div>
           </div>
         </section>
+      -->
       </section>
       <section>
         <section data-background-image="./themes/Pattern-17-outline.svg" data-background-size="400px"
@@ -728,9 +730,9 @@
         <section>
           <h2>CRUD API für Angebote</h2>
           <pre class="fragment"><code data-trim data-noescape class="go">
-          r.Route("/api/offer", func(sr chi.Router) {
-            sr.Post("/", HandleCreateOffer(offerRepository))
-            sr.Get("/{ID}", HandleReadOffer(offerRepository))
+          r.Route("/api/offer", func(r chi.Router) {
+            r.Post("/", HandleCreateOffer(offerRepository))
+            r.Get("/{ID}", HandleReadOffer(offerRepository))
           })
         </code></pre>
         </section>
@@ -753,14 +755,14 @@
         </code></pre>
         </section>
         <section>
-          <h2>Angebote speichern <span style="font-size: 50%;">in PostgreSQL</span></h2>
+          <h2>Angebote speichern <span style="font-size: 50%;">in Postgres</span></h2>
           <ul>
-            <li class="fragment"><code>pgx</code> als PostgreSQL Driver und Toolkit</li>
+            <li class="fragment"><code>pgx</code> als Postgres Driver und Toolkit</li>
             <li class="fragment">Interface <code>database/sql</code> in Go Standardlib</li>
           </ul>
         </section>
         <section>
-          <h2>Angebote speichern <span style="font-size: 50%;">in PostgreSQL</span></h2>
+          <h2>Angebote speichern <span style="font-size: 50%;">in Postgres</span></h2>
           <pre class="fragment" style="font-size: .48em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="1-2,12-13|3-11|">
           type OfferRepository struct {
             connPool *pgxpool.Pool
@@ -772,7 +774,7 @@
         </code></pre>
         </section>
         <section>
-          <h2>Angebote speichern <span style="font-size: 50%;">in PostgreSQL</span></h2>
+          <h2>Angebote speichern <span style="font-size: 50%;">in Postgres</span></h2>
           <pre class="fragment" style="font-size: .37em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="1,27|2-3|5-7|9-20|22-23|25-26|">
           func (r *OfferRepository) Insert(ctx context.Context, offer *Offer) (*Offer, error) {
             // 1. ID generieren
@@ -870,6 +872,7 @@
             </ul>
           </aside>
         </section>
+        <!--
         <section>
           <h2>Connection Pool nutzen</h2>
           <pre class="fragment" style="font-size: .35em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="7,9|1-4|">
@@ -926,7 +929,7 @@
           <h2>Zusammenfassung DogOP v0.2</h2>
           <ol>
             <li class="fragment">CRUD API für Angebote</li>
-            <li class="fragment">Angebote in PostgreSQL speichern</li>
+            <li class="fragment">Angebote in Postgres speichern</li>
             <li class="fragment">Context</li>
             <li class="fragment">Connection Pool nutzen</li>
             <li class="fragment">Datenbank Schema migrieren</li>
@@ -957,19 +960,12 @@
             </div>
           </div>
         </section>
+      -->
       </section>
       <section>
         <section data-background-image="./themes/Pattern-1-outline.svg" data-background-size="400px"
           data-background-repeat="repeat" data-background-opacity=".15">
           <h1 class="cross-red">Fallschirm und Rettungsgurt</h1>
-        </section>
-        <section>
-          <h2 class="cross-red">Fallschirm und Rettungsgurt</h2>
-          <ul>
-            <li>Problem Details</li>
-            <li>Health Check</li>
-            <li>Logging und Tracing</li>
-          </ul>
         </section>
         <section>
           <h2 class="cross-red">Health Check</h2>
@@ -996,10 +992,6 @@
   // Register Handler Function
 	r.Get("/health", h.HandlerFunc)
         </code></pre>
-        </section>
-        <section>
-          <h2 class="cross-red">Problem Details</h2>
-          <img class="fragment" src="themes/go-cloud-native/problem_details.png" />
         </section>
         <section>
           <h2 class="cross-red">Problem Details</h2>
@@ -1031,19 +1023,28 @@
         </section>
         <section>
           <h2 class="cross-red">Problem Details</h2>
-          <pre class="fragment" style="font-size: .43em;"><code data-trim data-noescape class="go" data-trim data-noescape data-line-numbers="2|2-10|2-10">
-	return func(w http.ResponseWriter, r *http.Request) {
-	  id, err := uuid.Parse(chi.URLParam(r, "ID"))
-	  if err != nil {
-      problem.New(
-        problem.Title("invalid request"),
-        problem.Wrap(err),
-        problem.Status(http.StatusBadRequest),
-      ).WriteTo(w)
-      return
-	  }
-  }
-          </code></pre>
+          <img class="fragment" src="themes/go-cloud-native/problem_details.png" />
+        </section>
+        <section>
+          <h2>Fehler behandeln</h2>
+          <h4 class="cross-red fragment" data-fragment-index="1">Mit Problem Details</h4>
+          <pre class="cross-red fragment" data-fragment-index="1" style="font-size: 0.44em;"><code data-trim data-noescape class="go">
+                                                if err != nil {
+                                                  problem.New(
+                                                    problem.Title("invalid request"),
+                                                    problem.Wrap(err),
+                                                    problem.Status(http.StatusBadRequest),
+                                                  ).WriteTo(w)
+                                                  return
+                                                }       
+                  </code></pre>
+          <h4 class="cross-red fragment" data-fragment-index="2">Mit Standardbibliothek</h4>
+          <pre class="cross-red fragment" data-fragment-index="2" style="font-size: 0.44em;"><code data-trim data-noescape class="go">
+                                                          if err != nil {
+                                                            http.Error(w, "invalid request", http.StatusBadRequest)
+                                                            return
+                                                          }
+                                                        </code></pre>
         </section>
         <section>
           <h2 class="cross-red">Middleware</h2>
@@ -1100,32 +1101,47 @@
         </section>
       </section>
       <section>
-        <h2 class="cross-white">Zusammenfassung DogOP</h2>
-        <div class="grid grid-cols-12 gap-1 content-start" style="font-size: 75%;">
-          <div class="col-span-6 fragment">
-            <h4 class="cross-yellow">v0.1</h4>
-            <ol>
-              <li>Go Projekt aufsetzen</li>
-              <li>einfache Rest API Handler</li>
-              <li>Konfiguration per Umgebungsvariable</li>
-              <li>Structs</li>
-              <li>Fehler behandeln</li>
-              <li>Unit Tests</li>
-              <li>Docker Container bauen</li>
-            </ol>
-          </div>
-          <div class="col-span-6 fragment">
-            <h4>v0.2</h4>
-            <ol>
-              <li>CRUD API für Angebote</li>
-              <li>Angebote in PostgreSQL speichern</li>
-              <li>Context</li>
+        <section>
+          <h2 class="cross-white">Zusammenfassung DogOP</h2>
+          <div class="grid grid-cols-12 gap-1 content-start" style="font-size: 75%;">
+            <div class="col-span-6 fragment">
+              <h4 class="cross-yellow">v0.1</h4>
+              <ol>
+                <li>Go Projekt aufsetzen</li>
+                <li>einfache Rest API Handler</li>
+                <li>Konfiguration per Umgebungsvariable</li>
+                <li>Structs</li>
+                <li>Fehler behandeln</li>
+                <li>Unit Tests</li>
+                <li>Docker Container bauen</li>
+              </ol>
+            </div>
+            <div class="col-span-6 fragment">
+              <h4>v0.2</h4>
+              <ol>
+                <li>CRUD API für Angebote</li>
+                <li>Angebote in Postgres speichern</li>
+                <li>Context</li>
+                <li><span class="cross-red">Health Check</li>
+                <li><span class="cross-red">Problem Details</li>
+                <li><span class="cross-red">Middleware</li>
+                <!--
               <li>Connection Pool nutzen</li>
               <li>Datenbank Schema migrieren</li>
-            </ol>
+-->
+              </ol>
+            </div>
           </div>
-        </div>
 
+        </section>
+        <section>
+          <h2 style="font-size: 170%" class="cross-blue">Cloud Native Booster</h2>
+          <ol style="font-size: 130%; list-style-type:none;">
+            <li>💪 Skalierbar</li>
+            <li>🚂 Zuverlässig</li>
+            <li>☯️ Einfach</li>
+          </ol>
+        </section>
       </section>
       <section>
         <h2 style="font-size: 170%">3 Gründe für Go</h2>
