@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,700;0,800;1,300;1,400;1,500;1,700;1,800&display=swap');
 
+.cross-blue {
+  color: #3CA8F5 !important;
+}
+
+.cross-red {
+  color: #FF8EA1 !important;
+}
+
+.cross-red {
+  color: #FF8EA1 !important;
+}
+
+.cross-purple {
+  color: #541298 !important;
+}
+
+.cross-white {
+  color: #FFFFFF !important;
+}
+
+.cross-yellow {
+  color: #FFB618 !important;
+}
+
 /* PRIMARY COLORS */
 .native-amarklor-violet {
   color: var(--amarklor-violet) !important;

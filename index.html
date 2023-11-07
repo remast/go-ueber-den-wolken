@@ -51,12 +51,13 @@
       </section>
       <section>
         <h2>Go App Engine Cold Start</h2>
-        <img class="fragment" src="themes/go-cloud-native/baralga-startup.png" />
+        <img src="themes/go-cloud-native/baralga-startup.png" />
         <div class="fragment box-content rounded p-6 border-4 transform -rotate-12 text-black"
           style="position: relative; top: -180px; background-color: #dbd4d4;">
           Up and running in 500ms! 🚀
         </div>
       </section>
+      <!--
       <section>
         <div class="grid grid-cols-3 gap-1 items-center">
           <div></div>
@@ -66,7 +67,6 @@
           <div></div>
         </div>
       </section>
-      <!--
       <section>
         <blockquote>
           Go has steadily grown in popularity as top language among developers
@@ -78,8 +78,6 @@
         </blockquote>
         https://octoverse.github.com/2022/top-programming-languages
       </section>
-    -->
-
       <section data-run-in-terminal="01_hellogopher\hellogopher.go" data-run-in-terminal-bin="go">
         <h2>Hello Gopher</h2>
         <pre><code data-trim data-noescape class="go">
@@ -109,7 +107,6 @@
           paths "fmt" and "math/rand".
         </aside>
       </section>
-      <!--
       <section>
         <h2>Entwicklung</h2>
         <div class="grid grid-cols-3 gap-32 items-center fragment">
@@ -170,6 +167,14 @@
           <div class="mt-12 text-right">
             <p style="font-size: 40%">Cloud Native Computing Foundation</p>
           </div>
+        </section>
+        <section>
+          <h2 style="font-size: 170%" class="cross-blue">3 Cloud Native Booster</h2>
+          <ol style="font-size: 130%; list-style-type:none;">
+            <li class="fragment">🗑️ Disposability </li>
+            <li class="fragment">⏰ Telemetry</li>
+            <li class="fragment">☯️ Simplicity</li>
+          </ol>
         </section>
         <!--
         <section>
@@ -275,15 +280,15 @@
         <section>
           <h2 class="cross-yellow">Tarifrechner DogOp v0.1</h2>
           <ul>
-            <li>API die Hunde OP Versicherung berechnet</li>
-            <li>Bereitstellung als Container</li>
-            <li>Konfiguration über Umgebungsvariablen</li>
+            <li class="fragment">API die Hunde OP Versicherung berechnet</li>
+            <li class="fragment">Bereitstellung als Container</li>
+            <li class="fragment">Konfiguration über Umgebungsvariablen</li>
           </ul>
         </section>
         <section>
           <h2>Tarifrechner DogOp v0.2</h2>
           <ul>
-            <li class="fragment">Angebote in PostgreSQL DB speichern</li>
+            <li class="fragment">Angebote in Postgres DB speichern</li>
             <li class="fragment">Migration Datenbank Schema</li>
             <li class="fragment">CRUD Operationen in REST API</li>
           </ul>
@@ -291,9 +296,9 @@
         <section>
           <h2 class="cross-red">Fallschirm und Rettungsgurt</h2>
           <ul>
-            <li class="fragment">Problem Details</li>
             <li class="fragment">Health Check</li>
-            <li class="fragment">Logging und Tracing</li>
+            <li class="fragment">Problem Details</li>
+            <li class="fragment">Middleware</li>
           </ul>
         </section>
       </section>
@@ -1080,7 +1085,7 @@
           func main() {
             r := chi.NewRouter()
             
-            // Basis Middlewares
+            // Basis Middleware
             r.Use(middleware.RequestID)
             r.Use(middleware.RealIP)
             r.Use(middleware.Logger)
@@ -1189,10 +1194,10 @@
     </li>
   </ul>
 </section>
--->
       <section>
         <h2>Backup</h2>
       </section>
+-->
     </div>
   </div>
 
