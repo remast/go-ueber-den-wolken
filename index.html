@@ -334,7 +334,7 @@
           
           func main() {
             r := chi.NewRouter()
-            r.Get("/", func(w http.ResponseWriter, req *http.Request) {
+            r.HandleFunc("GET /", func(w http.ResponseWriter, req *http.Request) {
               w.Write([]byte("Hello DogOp!"))
             })
             http.ListenAndServe(":8080", r)
@@ -422,9 +422,9 @@
           func main() {
             r := chi.NewRouter()
             
-            r.Post("/api/quote", HandleQuote)
+            r.HandleFunc("POST /api/quote", HandleQuote)
             
-            r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+            r.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
               w.Write([]byte("Hello DogOp!"))
             })
             
@@ -728,10 +728,8 @@
         <section>
           <h2>CRUD API für Angebote</h2>
           <pre class="fragment"><code data-trim data-noescape class="go">
-          r.Route("/api/offer", func(r chi.Router) {
-            r.Post("/", HandleCreateOffer(offerRepository))
-            r.Get("/{ID}", HandleReadOffer(offerRepository))
-          })
+          r.HandleFunc("POST /api/offer", HandleCreateOffer(offerRepository))
+          r.HandleFunc("GET /api/offer/{ID}", HandleReadOffer(offerRepository))
         </code></pre>
         </section>
         <section>
