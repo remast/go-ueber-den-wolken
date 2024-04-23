@@ -612,6 +612,19 @@
           ENTRYPOINT ["/usr/bin/dogop"]
         </code></pre>
         </section>
+        <section>          
+          <h2 class="cross-yellow">Docker DogOP mit <img src="themes/buildpacks-logo.png" style="width: 5em; display: inline;"></h2>
+          <pre class="fragment" style="font-size: .51em;"><code data-trim data-noescape class="clean" data-trim data-noescape>
+            // 1. Docker Image bauen
+            >_ pack build dogop-cnb 
+                 --buildpack paketo-buildpacks/go  
+                 --builder paketobuildpacks/builder-jammy-base
+          </code></pre>
+          <pre class="fragment" style="font-size: .51em;"><code data-trim data-noescape class="clean" data-trim data-noescape>
+            // 2. Docker Image ausühren
+            >_ docker run dogop-cnb
+          </code></pre>
+        </section>
         <!--
         <section>
           <h3 class="cross-yellow">>_ Demo</h3>
