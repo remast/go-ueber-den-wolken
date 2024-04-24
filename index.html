@@ -740,7 +740,7 @@
         </section>
         <section>
           <h2>CRUD API für Angebote</h2>
-          <pre class="fragment"><code data-trim data-noescape class="go">
+          <pre class="fragment" style="font-size: .48em;"><code data-trim data-noescape class="go">
           r.HandleFunc("POST /api/offer", HandleCreateOffer(offerRepository))
           r.HandleFunc("GET /api/offer/{ID}", HandleReadOffer(offerRepository))
         </code></pre>
@@ -999,7 +999,7 @@
 	))
 
   // Register Handler Function
-	r.Get("/health", h.HandlerFunc)
+	r.HandleFunc("GET /health", h.HandlerFunc)
         </code></pre>
         </section>
         <section>
@@ -1043,14 +1043,14 @@
                                                     problem.Title("invalid request"),
                                                     problem.Wrap(err),
                                                     problem.Status(http.StatusBadRequest),
-                                                  ).WriteTo(w)
+                                                  ).WriteTo(responseWriter)
                                                   return
                                                 }       
                   </code></pre>
           <h4 class="cross-red fragment" data-fragment-index="2">Mit Standardbibliothek</h4>
           <pre class="cross-red fragment" data-fragment-index="2" style="font-size: 0.44em;"><code data-trim data-noescape class="go">
                                                           if err != nil {
-                                                            http.Error(w, "invalid request", http.StatusBadRequest)
+                                                            http.Error(responseWriter, "invalid request", http.StatusBadRequest)
                                                             return
                                                           }
                                                         </code></pre>
